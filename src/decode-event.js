@@ -4,7 +4,7 @@ module.exports = function decodeEvent (params) {
 			return 'new branch created';
 
 		case params.commits && params.commits.length && !params.created:
-			return 'commits to existing branch';
+			return 'commits pushed';
 
 		default:
 			return 'other';
