@@ -1,23 +1,25 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var assert = require('assert');
+var debug = require('debug')('github-hooks');
 
 function startServer (opts) {
-	assert(opts.port, 'Port is required for starting server');
+	assert(opts.port, 'port is required to start server');
 	assert(opts.handleEvent, 'handleEvent function is required');
-	assert(opts.log, 'log is required');
 
-	var port = opts.port || process.env.PORT || 3333;
+	var app = express();
 
-	express.post('/push', bodyParser.json(), function handleEvent (req, res) {
-		opts.log.debug('Got request!');
+	app.post('/push', bodyParser.json(), function handleEvent (req, res) {
+		debug('Got request!', req.body);
 		opts.handleEvent(req.body);
 		res.end();
 	});
 
-	express.listen(port, function onStarted () {
-		opts.log.info('Waiting for github events on port %s', port);
+	app.listen(opts.port, function onStarted () {
+		debug('Waiting for github events on port %s', opts.port);
 	});
+
+	return app;
 }
 
 
