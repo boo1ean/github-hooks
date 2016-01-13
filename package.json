@@ -2,7 +2,7 @@
   "name": "github-events",
   "version": "0.1.0",
   "description": "Simplify github hooks developing",
-  "main": "index.js",
+  "main": "src/start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
