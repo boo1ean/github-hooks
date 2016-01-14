@@ -1,12 +1,26 @@
 module.exports = function decodeEvent (params) {
 	switch (true) {
-		case params.ref_type === 'branch':
-			return 'new branch created';
+		case params.created:
+			return eventWithBranch('new branch created', params);
 
-		case params.commits && params.commits.length && !params.created:
-			return 'commits pushed';
+		case params.deleted:
+			return eventWithBranch('branch deleted', params);
+
+		case params.commits && params.commits.length && !params.created && !params.deleted:
+			return eventWithBranch('commits pushed', params);
 
 		default:
 			return 'other';
 	}
+}
+
+function eventWithBranch (eventName, params) {
+	return {
+		name: eventName,
+		params: [getBranchName(params), params]
+	}
+}
+
+function getBranchName (params) {
+	return params.ref.split('/').pop();
 }
