@@ -14,8 +14,8 @@ module.exports = function createRepoEventBus (opts) {
 	});
 
 	function handleEvent (params) {
-		var event = decodeEvent(params);
-		eventBus.emit.apply(eventBus, event.name, event.params);
+		var emitParams = decodeEvent(params);
+		eventBus.emit.apply(emitParams);
 	}
 
 	return eventBus;

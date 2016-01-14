@@ -10,15 +10,12 @@ module.exports = function decodeEvent (params) {
 			return eventWithBranch('commits pushed', params);
 
 		default:
-			return 'other';
+			return ['other', params];
 	}
 }
 
 function eventWithBranch (eventName, params) {
-	return {
-		name: eventName,
-		params: [getBranchName(params), params]
-	}
+	return [eventName, getBranchName(params), params];
 }
 
 function getBranchName (params) {
