@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var assert = require('assert');
-var debug = require('debug')('github-hooks');
+var debug = require('debug')('github-events');
 
 function startServer (opts) {
 	assert(opts.port, 'port is required to start server');
