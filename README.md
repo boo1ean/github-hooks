@@ -6,14 +6,17 @@
 var githubEvents = require('github-events');
 
 // Start listener for github hooks
+// Setup github hook to http://your-server.com:3000/push
 var events = githubEvents({ port: 3000 });
 
-events.on('new branch created', function onNewBranchCreated (params) {
-	console.log('New branch is created: %s', params.ref);
+events.on('branch created', (branchName, params) => {
+	console.log('New branch is created: %s', branchName);
+	console.log('Original hook params:', params);
 });
 ```
 
 ## List of events
 
-- `new branch created`
 - `commits pushed`
+- `branch created`
+- `branch deleted`

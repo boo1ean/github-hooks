@@ -1,6 +1,6 @@
 {
   "name": "github-events",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Simplify github hooks developing",
   "main": "src/start.js",
   "scripts": {

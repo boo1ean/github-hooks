@@ -1,7 +1,7 @@
 module.exports = function decodeEvent (params) {
 	switch (true) {
 		case params.created:
-			return eventWithBranch('new branch created', params);
+			return eventWithBranch('branch created', params);
 
 		case params.deleted:
 			return eventWithBranch('branch deleted', params);
